@@ -1,0 +1,10 @@
+ninja: Entering directory `/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/debug/arm64-v8a'
+[1/2] Building CXX object CMakeFiles/ncnnyolox.dir/ndkcamera.cpp.o
+/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/ndkcamera.cpp:434:22: warning: 'ASensorManager_getInstance' is deprecated [-Wdeprecated-declarations]
+    sensor_manager = ASensorManager_getInstance();
+                     ^
+/home/yyang/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/android/sensor.h:557:17: note: 'ASensorManager_getInstance' has been explicitly marked deprecated here
+__attribute__ ((deprecated)) ASensorManager* ASensorManager_getInstance();
+                ^
+1 warning generated.
+[2/2] Linking CXX shared library /home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/debug/obj/arm64-v8a/libncnnyolox.so

@@ -1,0 +1,34 @@
+{
+  "buildFiles": [
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OGLCompilerTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OGLCompilerTargets.cmake",
+    "/home/yyang/Android/Sdk/ndk/21.4.7075529/build/cmake/platforms.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVModules_arm64_v8a.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVModules_arm64_v8a-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/SPIRVTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/CMakeLists.txt",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnnConfig.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OSDependentTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/SPIRVTargets.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnn-release.cmake",
+    "/home/yyang/Android/Sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVConfig-version.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVConfig.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnn.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/glslangTargets.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/glslangTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OSDependentTargets.cmake"
+  ],
+  "cleanCommands": [
+    "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "ncnnyolox-Release-arm64-v8a": {
+      "artifactName": "ncnnyolox",
+      "buildCommand": "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a\" ncnnyolox",
+      "abi": "arm64-v8a",
+      "output": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/release/obj/arm64-v8a/libncnnyolox.so"
+    }
+  }
+}

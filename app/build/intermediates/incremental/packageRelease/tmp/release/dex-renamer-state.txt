@@ -1,0 +1,4 @@
+#Wed Sep 22 21:21:02 CST 2021
+base.0=/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

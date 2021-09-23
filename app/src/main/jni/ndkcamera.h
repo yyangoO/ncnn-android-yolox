@@ -25,6 +25,10 @@
 
 #include <opencv2/core/core.hpp>
 
+#include <allocator.h>
+#include <pipeline.h>
+#include <command.h>
+
 class NdkCamera
 {
 public:
@@ -75,6 +79,10 @@ private:
     mutable ASensorEventQueue* sensor_event_queue;
     const ASensor* accelerometer_sensor;
     ANativeWindow* win;
+
+    ncnn::VulkanDevice* vkdev;
+    ncnn::VkRender* render_cmd;
+    ncnn::VkCompute* compute_cmd;
 };
 
 #endif // NDKCAMERA_H

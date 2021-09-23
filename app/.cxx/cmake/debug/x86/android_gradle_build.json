@@ -1,0 +1,67 @@
+{
+  "stringTable": {
+    "0": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/debug/x86",
+    "1": "--target=i686-none-linux-android28 --gcc-toolchain=/home/yyang/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/yyang/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dncnnyolox_EXPORTS -I/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/include/opencv -I/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/include -isystem /home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/include/ncnn -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC -fno-rtti -fno-exceptions"
+  },
+  "buildFiles": [
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OGLCompilerTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OGLCompilerTargets.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVModules_x86.cmake",
+    "/home/yyang/Android/Sdk/ndk/21.4.7075529/build/cmake/platforms.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/SPIRVTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/CMakeLists.txt",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVModules_x86-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnnConfig.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OSDependentTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/SPIRVTargets.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnn-release.cmake",
+    "/home/yyang/Android/Sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVConfig-version.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/opencv-mobile-2.4.13.7-android/sdk/native/jni/OpenCVConfig.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/ncnn/ncnn.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/glslangTargets.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/glslangTargets-release.cmake",
+    "/home/yyang/Archdevel/workspace/sources/ncnn/build-android-aarch64/install/lib/cmake/OSDependentTargets.cmake"
+  ],
+  "cleanCommands": [
+    "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/debug/x86\" clean"
+  ],
+  "buildTargetsCommand": "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/debug/x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "ncnnyolox-Debug-x86": {
+      "buildCommand": "/home/yyang/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/debug/x86\" ncnnyolox",
+      "buildType": "debug",
+      "toolchain": "2404242195",
+      "abi": "x86",
+      "artifactName": "ncnnyolox",
+      "files": [
+        {
+          "src": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/yoloxncnn.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/yolox.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/ndkcamera.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/debug/obj/x86/libncnnyolox.so"
+    }
+  },
+  "toolchains": {
+    "2404242195": {
+      "cppCompilerExecutable": "/home/yyang/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -20,7 +20,6 @@
 #include "cpu.h"
 
 
-
 // YOLOX use the same focus in yolov5
 class YoloV5Focus : public ncnn::Layer
 {

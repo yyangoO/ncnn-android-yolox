@@ -149,6 +149,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved)
 {
     __android_log_print(ANDROID_LOG_DEBUG, "ncnn", "JNI_OnLoad");
 
+    ncnn::create_gpu_instance();
+
     g_camera = new MyNdkCamera;
 
     return JNI_VERSION_1_4;
@@ -160,6 +162,8 @@ JNIEXPORT void JNI_OnUnload(JavaVM* vm, void* reserved)
 
     {
         ncnn::MutexLockGuard g(lock);
+
+        ncnn::destroy_gpu_instance();
 
         delete g_yolox;
         g_yolox = 0;

@@ -434,6 +434,10 @@ NdkCameraWindow::NdkCameraWindow() : NdkCamera()
     sensor_manager = ASensorManager_getInstance();
 
     accelerometer_sensor = ASensorManager_getDefaultSensor(sensor_manager, ASENSOR_TYPE_ACCELEROMETER);
+
+    this->vkdev = ncnn::get_gpu_device();
+    this->compute_cmd = new ncnn::VkCompute(this->vkdev);
+    this->render_cmd = new ncnn::VkRender(this->vkdev);
 }
 
 NdkCameraWindow::~NdkCameraWindow()
@@ -465,6 +469,8 @@ void NdkCameraWindow::set_window(ANativeWindow* _win)
 
     win = _win;
     ANativeWindow_acquire(win);
+
+    this->render_cmd->create(_win);
 }
 
 void NdkCameraWindow::on_image_render(cv::Mat& rgb) const
@@ -727,45 +733,76 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
 
     ANativeWindow_setBuffersGeometry(win, render_w, render_h, AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM);
 
-    ANativeWindow_Buffer buf;
-    ANativeWindow_lock(win, &buf, NULL);
 
-    // scale to target size
-    if (buf.format == AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM || buf.format == AHARDWAREBUFFER_FORMAT_R8G8B8X8_UNORM)
-    {
-        for (int y = 0; y < render_h; y++)
-        {
-            const unsigned char* ptr = rgb_render.ptr<const unsigned char>(y);
-            unsigned char* outptr = (unsigned char*)buf.bits + buf.stride * 4 * y;
+    ncnn::Mat in_mat = ncnn::Mat::from_pixels(rgb_render.data, ncnn::Mat::PIXEL_RGB, render_w, render_h);
 
-            int x = 0;
-#if __ARM_NEON
-            for (; x + 7 < render_w; x += 8)
-            {
-                uint8x8x3_t _rgb = vld3_u8(ptr);
-                uint8x8x4_t _rgba;
-                _rgba.val[0] = _rgb.val[0];
-                _rgba.val[1] = _rgb.val[1];
-                _rgba.val[2] = _rgb.val[2];
-                _rgba.val[3] = vdup_n_u8(255);
-                vst4_u8(outptr, _rgba);
+    ncnn::VkR8g8b8a8UnormImageAllocator r8g8b8a8unorm_allocator(this->vkdev);
 
-                ptr += 24;
-                outptr += 32;
-            }
-#endif // __ARM_NEON
-            for (; x < render_w; x++)
-            {
-                outptr[0] = ptr[0];
-                outptr[1] = ptr[1];
-                outptr[2] = ptr[2];
-                outptr[3] = 255;
+    ncnn::VkImageMat temp_img_mat;
+    ncnn::VkImageMat out_img_mat(render_w, render_h, 4, 4u, 4, &r8g8b8a8unorm_allocator);
 
-                ptr += 3;
-                outptr += 4;
-            }
-        }
-    }
 
-    ANativeWindow_unlockAndPost(win);
+    ncnn::VkAllocator* blob_vkallocator = this->vkdev->acquire_blob_allocator();
+    ncnn::VkAllocator* staging_vkallocator = this->vkdev->acquire_staging_allocator();
+    ncnn::Option opt;
+    opt.blob_vkallocator = blob_vkallocator;
+    opt.workspace_vkallocator = blob_vkallocator;
+    opt.staging_vkallocator = staging_vkallocator;
+    opt.use_vulkan_compute = true;
+    opt.use_image_storage = true;
+
+    ncnn::Convert2R8g8b8a8UnormPipeline convert_pipline(this->vkdev);
+    convert_pipline.create(ncnn::Mat::PIXEL_RGB, 1, render_w, render_h, render_w, render_h, opt);
+
+    this->compute_cmd->record_clone(in_mat, temp_img_mat, opt);
+    this->compute_cmd->record_convert2_r8g8b8a8_image(&convert_pipline, temp_img_mat, out_img_mat);
+    this->compute_cmd->submit_and_wait();
+    this->compute_cmd->reset();
+    this->render_cmd->record_image(out_img_mat);
+    this->render_cmd->render();
+    this->render_cmd->reset();
+
+
+
+//    ANativeWindow_Buffer buf;
+//    ANativeWindow_lock(win, &buf, NULL);
+//
+//    // scale to target size
+//    if (buf.format == AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM || buf.format == AHARDWAREBUFFER_FORMAT_R8G8B8X8_UNORM)
+//    {
+//        for (int y = 0; y < render_h; y++)
+//        {
+//            const unsigned char* ptr = rgb_render.ptr<const unsigned char>(y);
+//            unsigned char* outptr = (unsigned char*)buf.bits + buf.stride * 4 * y;
+//
+//            int x = 0;
+//#if __ARM_NEON
+//            for (; x + 7 < render_w; x += 8)
+//            {
+//                uint8x8x3_t _rgb = vld3_u8(ptr);
+//                uint8x8x4_t _rgba;
+//                _rgba.val[0] = _rgb.val[0];
+//                _rgba.val[1] = _rgb.val[1];
+//                _rgba.val[2] = _rgb.val[2];
+//                _rgba.val[3] = vdup_n_u8(255);
+//                vst4_u8(outptr, _rgba);
+//
+//                ptr += 24;
+//                outptr += 32;
+//            }
+//#endif // __ARM_NEON
+//            for (; x < render_w; x++)
+//            {
+//                outptr[0] = ptr[0];
+//                outptr[1] = ptr[1];
+//                outptr[2] = ptr[2];
+//                outptr[3] = 255;
+//
+//                ptr += 3;
+//                outptr += 4;
+//            }
+//        }
+//    }
+//
+//    ANativeWindow_unlockAndPost(win);
 }

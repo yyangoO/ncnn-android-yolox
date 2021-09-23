@@ -19,6 +19,7 @@
 
 #include <net.h>
 
+
 struct Object
 {
     cv::Rect_<float> rect;

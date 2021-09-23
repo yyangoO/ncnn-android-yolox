@@ -1,0 +1,67 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox",
+      "sdkFolder": "/home/yyang/Android/Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app",
+      "makeFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/src/main/jni/CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/.cxx",
+      "cxxFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx",
+      "ndkFolder": "/home/yyang/Android/Sdk/ndk/21.4.7075529",
+      "ndkVersion": "21.4.7075529",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "soFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/release/lib",
+    "objFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/release/obj",
+    "jsonFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release",
+    "gradleBuildOutputFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARM64_V8A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARM64_V8A",
+  "abiPlatformVersion": 28,
+  "cxxBuildFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a",
+  "jsonFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/android_gradle_build.json",
+  "gradleBuildOutputFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a",
+  "objFolder": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/build/intermediates/cmake/release/obj/arm64-v8a",
+  "buildCommandFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/build_command.txt",
+  "buildOutputFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/build_output.txt",
+  "modelOutputFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/CMakeLists.txt",
+    "toolchainWrapperFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/build_generation_state.json",
+    "cacheKeyFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/compiler_cache_key.json",
+    "compilerCacheUseFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/compiler_cache_use.json",
+    "compilerCacheWriteFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cxx/release/arm64-v8a/compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/json_generation_record.json",
+  "compileCommandsJsonFile": "/home/yyang/Archdevel/workspace/sources/ncnn-android-yolox/app/.cxx/cmake/release/arm64-v8a/compile_commands.json"
+}
