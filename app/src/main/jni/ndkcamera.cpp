@@ -435,9 +435,9 @@ NdkCameraWindow::NdkCameraWindow() : NdkCamera()
 
     accelerometer_sensor = ASensorManager_getDefaultSensor(sensor_manager, ASENSOR_TYPE_ACCELEROMETER);
 
-    this->vkdev = ncnn::get_gpu_device();
-    this->compute_cmd = new ncnn::VkCompute(this->vkdev);
-    this->render_cmd = new ncnn::VkRender(this->vkdev);
+    vkdev = ncnn::get_gpu_device();
+    compute_cmd = new ncnn::VkCompute(vkdev);
+    render_cmd = new ncnn::VkRender(vkdev);
 }
 
 NdkCameraWindow::~NdkCameraWindow()
@@ -740,29 +740,29 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
 
     ncnn::Mat in_mat = ncnn::Mat::from_pixels(rgb_render.data, ncnn::Mat::PIXEL_RGB, render_w, render_h);
 
-    ncnn::VkR8g8b8a8UnormImageAllocator r8g8b8a8unorm_allocator(this->vkdev);
+    ncnn::VkR8g8b8a8UnormImageAllocator r8g8b8a8unorm_allocator(vkdev);
 
     ncnn::VkImageMat temp_img_mat;
     ncnn::VkImageMat out_img_mat(surface_w, surface_h, 4, 4u, 4, &r8g8b8a8unorm_allocator);
 
-    ncnn::VkAllocator* blob_vkallocator = this->vkdev->acquire_blob_allocator();
-    ncnn::VkAllocator* staging_vkallocator = this->vkdev->acquire_staging_allocator();
+    ncnn::VkAllocator* blob_vkallocator = vkdev->acquire_blob_allocator();
+    ncnn::VkAllocator* staging_vkallocator = vkdev->acquire_staging_allocator();
     ncnn::Option opt;
     opt.blob_vkallocator = blob_vkallocator;
     opt.workspace_vkallocator = blob_vkallocator;
     opt.staging_vkallocator = staging_vkallocator;
     opt.use_image_storage = true;
 
-    ncnn::Convert2R8g8b8a8UnormPipeline convert_pipline(this->vkdev);
+    ncnn::Convert2R8g8b8a8UnormPipeline convert_pipline(vkdev);
     convert_pipline.create(ncnn::Mat::PIXEL_RGB, 1, render_w, render_h, surface_w, surface_h, opt);
 
-    this->compute_cmd->record_clone(in_mat, temp_img_mat, opt);
-    this->compute_cmd->record_convert2_r8g8b8a8_image(&convert_pipline, temp_img_mat, out_img_mat);
-    this->compute_cmd->submit_and_wait();
-    this->compute_cmd->reset();
-    this->render_cmd->record_image(out_img_mat);
-    this->render_cmd->render();
-    this->render_cmd->reset();
+    compute_cmd->record_clone(in_mat, temp_img_mat, opt);
+    compute_cmd->record_convert2_r8g8b8a8_image(&convert_pipline, temp_img_mat, out_img_mat);
+    compute_cmd->submit_and_wait();
+    compute_cmd->reset();
+    render_cmd->record_image(out_img_mat);
+    render_cmd->render();
+    render_cmd->reset();
 
     in_mat.release();
     temp_img_mat.release();
@@ -770,7 +770,7 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
 
     vkdev->reclaim_blob_allocator(blob_vkallocator);
     vkdev->reclaim_staging_allocator(staging_vkallocator);
-
+    /* ----------------------------- testing ---------------------------------- */
 
 
 //    ANativeWindow_Buffer buf;
