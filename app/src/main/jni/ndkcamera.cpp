@@ -734,13 +734,16 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
     ANativeWindow_setBuffersGeometry(win, render_w, render_h, AHARDWAREBUFFER_FORMAT_R8G8B8A8_UNORM);
 
 
+    /* ----------------------------- testing ---------------------------------- */
+    int surface_w = 600;
+    int surface_h = 1000;
+
     ncnn::Mat in_mat = ncnn::Mat::from_pixels(rgb_render.data, ncnn::Mat::PIXEL_RGB, render_w, render_h);
 
     ncnn::VkR8g8b8a8UnormImageAllocator r8g8b8a8unorm_allocator(this->vkdev);
 
     ncnn::VkImageMat temp_img_mat;
-    ncnn::VkImageMat out_img_mat(render_w, render_h, 4, 4u, 4, &r8g8b8a8unorm_allocator);
-
+    ncnn::VkImageMat out_img_mat(surface_w, surface_h, 4, 4u, 4, &r8g8b8a8unorm_allocator);
 
     ncnn::VkAllocator* blob_vkallocator = this->vkdev->acquire_blob_allocator();
     ncnn::VkAllocator* staging_vkallocator = this->vkdev->acquire_staging_allocator();
@@ -748,11 +751,10 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
     opt.blob_vkallocator = blob_vkallocator;
     opt.workspace_vkallocator = blob_vkallocator;
     opt.staging_vkallocator = staging_vkallocator;
-    opt.use_vulkan_compute = true;
     opt.use_image_storage = true;
 
     ncnn::Convert2R8g8b8a8UnormPipeline convert_pipline(this->vkdev);
-    convert_pipline.create(ncnn::Mat::PIXEL_RGB, 1, render_w, render_h, render_w, render_h, opt);
+    convert_pipline.create(ncnn::Mat::PIXEL_RGB, 1, render_w, render_h, surface_w, surface_h, opt);
 
     this->compute_cmd->record_clone(in_mat, temp_img_mat, opt);
     this->compute_cmd->record_convert2_r8g8b8a8_image(&convert_pipline, temp_img_mat, out_img_mat);
@@ -761,6 +763,13 @@ void NdkCameraWindow::on_image(const unsigned char* nv21, int nv21_width, int nv
     this->render_cmd->record_image(out_img_mat);
     this->render_cmd->render();
     this->render_cmd->reset();
+
+    in_mat.release();
+    temp_img_mat.release();
+    out_img_mat.release();
+
+    vkdev->reclaim_blob_allocator(blob_vkallocator);
+    vkdev->reclaim_staging_allocator(staging_vkallocator);
 
 
 
